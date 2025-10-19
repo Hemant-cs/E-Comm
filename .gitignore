@@ -42,3 +42,6 @@ Thumbs.db
 # Misc
 *.tgz
 dump/
+
+#for .DS_store - its for macOS finder application - not needed in our project
+.DS_Store

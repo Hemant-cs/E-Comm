@@ -1,0 +1,41 @@
+.SignUp{
+    position: fixed;
+    top: 30%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+}
+
+.SignUp input:hover,
+.SignUp input:focus{
+    background: rgba(0,0,0,0.06);
+    color: #000;
+    transform: translateY(-1px);
+}
+
+.SignUp button:hover,
+.SignUp button:focus{
+    background: rgba(0,0,0,0.06);
+    color: #000;
+    transform: translateY(-1px);
+}
+
+
+.SignUp h1{
+    font-style: italic;
+    margin-left: 20px;
+}
+
+.SignUp input{
+    padding: 7px;
+    display: block;
+    border: 2px solid black;
+    width: 300px;
+    margin: 20px;
+}
+
+.SignUp button {
+    margin-left: 20px;
+    cursor: pointer;
+}
