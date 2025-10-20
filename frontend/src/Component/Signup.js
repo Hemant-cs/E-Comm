@@ -1,12 +1,24 @@
 import "./Signup.css";
 import {useState} from "react";
+import axios from "axios";
 
 const Signup = ()=>{
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const handleSignUp = ()=>{
-        console.log(fullName, email, password);
+    const handleSignUp = async ()=>{
+        const signedUp = await axios.post("http://localhost:8080/signup",{
+            fullName,
+            email,
+            password
+        });
+        console.log("signedUp", signedUp);
+        if(signedUp.status == "200"){
+            setFullName("");
+            setEmail("");
+            setPassword("");
+            window.alert("Register successfully!")
+        }
     }
     return(
         <div className="SignUp">

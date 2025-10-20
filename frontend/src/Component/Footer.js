@@ -7,7 +7,7 @@ import {BsMedium} from 'react-icons/bs'
 const Footer = () => {
   return (
     <footer>
-        <a className='footer__logo'>HEMANT CS</a>
+        <a href="/" className='footer__logo'>HEMANT CS</a>
         <div className="footer__socials">
           <a href="https://www.linkedin.com/in/hemant-cs/"><BsLinkedin/></a>
           <a href="https://github.com/Hemant-cs"><BsGithub/></a>
