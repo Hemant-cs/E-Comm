@@ -1,11 +1,13 @@
 import "./Signup.css";
 import {useState} from "react";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const Signup = ()=>{
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const nevigate = useNavigate();
     const handleSignUp = async ()=>{
         const signedUp = await axios.post("http://localhost:8080/signup",{
             fullName,
@@ -13,11 +15,12 @@ const Signup = ()=>{
             password
         });
         console.log("signedUp", signedUp);
-        if(signedUp.status == "200"){
+        if(signedUp.status === 200){
             setFullName("");
             setEmail("");
             setPassword("");
-            window.alert("Register successfully!")
+            window.alert("Register successfully!");
+            nevigate("/");
         }
     }
     return(
