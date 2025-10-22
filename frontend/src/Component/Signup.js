@@ -1,23 +1,22 @@
 import "./Signup.css";
-import {useEffect, useState, useContext} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import { UserContext } from "./UserDetails";
+import Login from "./Login";
 
 
 const Signup = ()=>{
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const {setUserData} = useContext(UserContext);
+    const [loginReq, setLoginReq] = useState(false);
     const navigate = useNavigate();
     useEffect(()=>{
         const user = localStorage.getItem("User");
         if(user){
-            setUserData(user);
             navigate("/");
         }
-    },[navigate, setUserData]);
+    },[navigate]);
     const handleSignUp = async ()=>{
         try {
             const signedUp = await axios.post("http://localhost:8080/signup",{
@@ -34,7 +33,6 @@ const Signup = ()=>{
                 const userData = {...signedUp.data};
                 delete userData.password;
                 localStorage.setItem("User",JSON.stringify(userData));
-                setUserData(userData);
                 navigate("/");
             }
         } catch (error) {
@@ -43,13 +41,18 @@ const Signup = ()=>{
         }
     }
     return(
-        <div className="SignUp">
-            <h1>Register Your Self....!</h1>
-            <input type="text" placeholder="Enter your Full Name" value={fullName} onChange={e=>setFullName(e.target.value)} />
-            <input type="email" placeholder="Enter your Email" value={email} onChange={e=>setEmail(e.target.value)}/>
-            <input type="password" placeholder="Enter your Password" value={password} onChange={e=>setPassword(e.target.value)}/>
-            <button type="button" onClick={handleSignUp}>Sign Up</button>
-        </div>
+        <>
+            {!loginReq ? <div className="SignUp">
+                <h1>Register Your Self....!</h1>
+                <input type="text" placeholder="Enter your Full Name" value={fullName} onChange={e=>setFullName(e.target.value)} />
+                <input type="email" placeholder="Enter your Email" value={email} onChange={e=>setEmail(e.target.value)}/>
+                <input type="password" placeholder="Enter your Password" value={password} onChange={e=>setPassword(e.target.value)}/>
+                <button type="button" onClick={handleSignUp}>Sign Up</button>
+                <button type="button" onClick={()=>setLoginReq(true)}>Already a User?</button>
+            </div>
+            :
+            <Login />}
+        </>
     )
 }
 
