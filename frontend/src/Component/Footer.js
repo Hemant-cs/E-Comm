@@ -3,11 +3,12 @@ import './Footer.css'
 import {BsLinkedin} from 'react-icons/bs'
 import {BsGithub} from 'react-icons/bs'
 import {BsMedium} from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
     <footer>
-        <a href="/" className='footer__logo'>HEMANT CS</a>
+        <Link to="/" className='footer__logo'>HEMANT CS</Link>
         <div className="footer__socials">
           <a href="https://www.linkedin.com/in/hemant-cs/"><BsLinkedin/></a>
           <a href="https://github.com/Hemant-cs"><BsGithub/></a>

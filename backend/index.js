@@ -18,6 +18,17 @@ app.get("/", async(req, res)=>{
     }
 });
 
+app.post("/add-product",async(req,res)=>{
+    try{
+        const product = new Product(req.body);
+        const resp = await product.save();
+        res.send(resp);
+    }
+    catch(err){
+        res.status(500).send({error:err});
+    }
+})
+
 //for getting all users
 app.get("/users", async(req, res)=>{
     try{

@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import "./Nav.css";
 import {useNavigate} from "react-router-dom";
+import logo from "../Resource/e-comm.jpeg";
 
 function Nav(){
     let isLoggedIn = localStorage.getItem("User");
@@ -11,16 +12,22 @@ function Nav(){
     }
     return(
         <div className="NavBar">
-            <ul>
-                <li><Link to="/">All Product list Component</Link></li>
-                <li><Link to="/add-product">Add Product</Link></li>
-                <li><Link to="/update-product">Update Product</Link></li>
-                {isLoggedIn && <li><Link to="/profile">Profile</Link></li>}
-                {isLoggedIn ? 
-                    <li><Link to="/logout" onClick={handleLogout}>Logout</Link></li> :
-                    <li><Link to="/signup">Login/Sign Up</Link></li>
-                }
-            </ul>
+            <img alt="logo" style={{width: "15%", marginTop: "10px", cursor: "pointer"}} src={logo} onClick={()=>navigate("/")}/>
+            {isLoggedIn ? 
+            <div>
+                    <ul>
+                        <li><Link to="/add-product">Add Product</Link></li>
+                        <li><Link to="/update-product">Update Product</Link></li>
+                        <li><Link to="/profile">Profile</Link></li>
+                        <li><Link to="/logout" onClick={handleLogout}>Logout</Link></li>
+                    </ul>
+                </div> : 
+                <div>
+                    <ul>
+                        <li><Link to="/signup">Login/Sign Up</Link></li>
+                    </ul>
+                </div>
+            }
         </div>
     )
 }
